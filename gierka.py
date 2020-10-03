@@ -12,11 +12,23 @@ def welcome():
 #---------STAGES---------#
 def firstStage(health):
     print("\nObok Ciebie przechodzi wieśniak uzbrojony w widły. Co robisz?")
-    playerChoice = int(input("1. Zwróć na siebie uwagę\t2. Schowaj się: "))
+    while True:
+        try:
+            playerChoice = int(input("1. Zwróć na siebie uwagę\t2. Schowaj się: "))
+            break
+        except ValueError:
+            wrongChoiceMessage()
+            continue
+
     if playerChoice == 1:
         playsound('sounds/whistle.mp3')
-        playerChoice = int(input("Pomyślnie przyciągasz uwagę wieśniaka. Co chcesz zrobić?\n1. Zjedz go\t2. Oddaj skarby: "))
-
+        while True:
+            try:
+                playerChoice = int(input("Pomyślnie przyciągasz uwagę wieśniaka. Co chcesz zrobić?\n1. Zjedz go\t2. Oddaj skarby: "))
+                break
+            except ValueError:
+                wrongChoiceMessage()
+                continue
         if playerChoice == 1:
             print("Zjadasz wieśniaka i zyskujesz 10HP")
             health += 10
@@ -44,7 +56,14 @@ def firstStage(health):
 
 def secondStage(health):
     print("\nZbliża się do Ciebie Palladyn ubarany w błyszczącą zbroje,  wyposażony w magiczny, dwuręczny miecz, który dzierży w 1 ręce. Do tego widzisz tarcze w jego drugiej ręce. Jaką decyzje podejmiesz?")
-    playerChoice = int(input("1. Walcz\t2. Uciekaj\t3. Oddaj skarby: "))
+    while True:
+        try:
+            playerChoice = int(input("1. Walcz\t2. Uciekaj\t3. Oddaj skarby: "))
+            break
+        except ValueError:
+            wrongChoiceMessage()
+            continue
+
     if playerChoice == 1:
         playsound('sounds/fight.mp3')
         print("Podejmujesz walkę, ale z marnym skutkiem. Giniesz!")
@@ -80,7 +99,14 @@ def secondStage(health):
 
 def thirdStage(health):
     print("\nPodchodzi do Ciebie dwu osobowy zespół złożony z wojownika i uzdrowiciela. Twój wybór: ")
-    playerChoice = int(input("1. Walcz\t2. Oddaj skarby\t3. Uciekaj: "))
+    while True:
+        try:
+            playerChoice = int(input("1. Walcz\t2. Oddaj skarby\t3. Uciekaj: "))
+            break
+        except ValueError:
+            wrongChoiceMessage()
+            continue
+
     if playerChoice == 1:
         fight(health)
 
@@ -111,11 +137,19 @@ def wrongChoiceMessage():
 def endGame():
     print(pyfiglet.figlet_format("Giniesz", font = "banner3-D"))
     playsound('sounds/you_lose.mp3')
+    input("Nacisnij enter aby zamknąć")
     sys.exit()
 
 def fight(health):
     print("Kogo chcesz zaatakować?")
-    playerChoice = int(input("1. Wojownika\t2. Uzdrowiciela: "))
+    while True:
+        try:
+            playerChoice = int(input("1. Wojownika\t2. Uzdrowiciela: "))
+            break
+        except ValueError:
+            wrongChoiceMessage()
+            continue
+
     if playerChoice == 1:
         print("Podejmujesz walkę z wojownikiem, który jest leczony przez uzdrowiciela.")
         playsound('sounds/fight.mp3')
@@ -138,29 +172,36 @@ def fight(health):
 def runAway(health):
     print("Próbujesz uciekać")
     playsound('sounds/footsteps.mp3')
-    playsound
     generate = random.randint(1,2)
     if generate == 1:
         print("Udaje Ci się uciec!")
         playsound('sounds/panting.mp3')
         healthInfoMessage(health)
     else:
-        funkcja(health)
+        enemiesAreChasing(health)
 
-def funkcja(health):
+def enemiesAreChasing(health):
     print("Nrogowie Cię gonią! Co chcesz zrobić?")
-    playerChoice = int(input("1. Walcz\t2. Uciekaj: "))
+    while True:
+        try:
+            playerChoice = int(input("1. Walcz\t2. Uciekaj: "))
+            break
+        except ValueError:
+            wrongChoiceMessage()
+            continue
+
     if playerChoice == 1:
         fight(health)
     elif playerChoice == 2:
         runAway(health)
     else:
         wrongChoiceMessage()
-        funkcja(health)
+        enemiesAreChasing(health)
 
 def winScreen():
     print(pyfiglet.figlet_format("Przezyles!", font = "banner3-D"))
     playsound('sounds/you_win.mp3')
+    input("Nacisnij enter aby zamknąć")
 
 def main():
     health = 100
@@ -172,5 +213,6 @@ def main():
     health = funcHealth
     funcHealth = thirdStage(health)
     winScreen()
+
 
 main()
