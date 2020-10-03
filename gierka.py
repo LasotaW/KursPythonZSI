@@ -1,12 +1,10 @@
 from playsound import playsound
-from pyfiglet import Figlet
 import random
 import sys
 import pyfiglet
-from pyfiglet import Figlet
 
 def welcome():
-    f = Figlet(font='isometric1')
+    f = pyfiglet.Figlet(font='isometric1')
     print(f.renderText("THE MIMIK"))
     print("The Mimik: gra tekstowa o skrzyni potworze.\n")
     print("Witaj mimiku! Jesteś potworem o wyglądzie skrzyni, który zjada ludzi. W swoim życiu musisz podjąć decyzje czy zjeść człowieka, ukryć się i oddać skarby albo uciec narażając się na pościg lub wykrycie.")
@@ -84,7 +82,6 @@ def thirdStage(health):
     print("\nPodchodzi do Ciebie dwu osobowy zespół złożony z wojownika i uzdrowiciela. Twój wybór: ")
     playerChoice = int(input("1. Walcz\t2. Oddaj skarby\t3. Uciekaj: "))
     if playerChoice == 1:
-        playsound('sounds/fight.mp3')
         fight(health)
 
     elif playerChoice == 2:
