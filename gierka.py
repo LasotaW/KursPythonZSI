@@ -55,7 +55,7 @@ def firstStage(health):
     return health
 
 def secondStage(health):
-    print("\nZbliża się do Ciebie Palladyn ubarany w błyszczącą zbroje,  wyposażony w magiczny, dwuręczny miecz, który dzierży w 1 ręce. Do tego widzisz tarcze w jego drugiej ręce. Jaką decyzje podejmiesz?")
+    print("\nZbliża się do Ciebie Palladyn ubarany w błyszczącą zbroje,  wyposażony w magiczny, dwuręczny miecz, który dzierży w jednej ręce. \nDo tego widzisz tarcze w jego drugiej ręce. Jaką decyzje podejmiesz?")
     while True:
         try:
             playerChoice = int(input("1. Walcz\t2. Uciekaj\t3. Oddaj skarby: "))
@@ -183,7 +183,7 @@ def runAway(health):
         enemiesAreChasing(health)
 
 def enemiesAreChasing(health):
-    print("Nrogowie Cię gonią! Co chcesz zrobić?")
+    print("Wrogowie Cię gonią! Co chcesz zrobić?")
     while True:
         try:
             playerChoice = int(input("1. Walcz\t2. Uciekaj: "))
