@@ -66,7 +66,7 @@ def secondStage(health):
 
     if playerChoice == 1:
         playsound('sounds/fight.mp3')
-        print("Podejmujesz walkę, ale z marnym skutkiem. Giniesz!")
+        print("Podejmujesz walkę, ale z marnym skutkiem!")
         playsound('sounds/ugh.mp3')
         endGame()
 
@@ -207,11 +207,20 @@ def main():
     health = 100
     funcHealth = 0
     welcome()
-    funcHealth = firstStage(health)
-    health = funcHealth
-    funcHealth = secondStage(health)
-    health = funcHealth
-    funcHealth = thirdStage(health)
+    x = []
+    while len(x) != 3:
+        randomStage = random.randint(1, 3)
+        if randomStage not in x:
+            x.append(randomStage)
+            if randomStage == 1:
+                funcHealth = firstStage(health)
+                health = funcHealth
+            elif randomStage == 2:
+                funcHealth = secondStage(health)
+                health = funcHealth
+            else:
+                funcHealth = thirdStage(health)
+
     winScreen()
 
 
