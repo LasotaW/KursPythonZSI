@@ -108,7 +108,7 @@ def thirdStage(health):
             continue
 
     if playerChoice == 1:
-        fight(health)
+        health = fight(health)
 
     elif playerChoice == 2:
         print("Udaje Ci się przekonać wroga do wzięcia łapówki")
@@ -168,6 +168,8 @@ def fight(health):
 
     else:
         wrongChoiceMessage()
+    
+    return health
 
 def runAway(health):
     print("Próbujesz uciekać")
@@ -191,7 +193,7 @@ def enemiesAreChasing(health):
             continue
 
     if playerChoice == 1:
-        fight(health)
+        health = fight(health)
     elif playerChoice == 2:
         runAway(health)
     else:
@@ -199,7 +201,7 @@ def enemiesAreChasing(health):
         enemiesAreChasing(health)
 
 def winScreen():
-    print(pyfiglet.figlet_format("Przezyles!", font = "banner3-D"))
+    print(pyfiglet.figlet_format("Koniec Gry!", font = "banner3-D"))
     playsound('sounds/you_win.mp3')
     input("Nacisnij enter aby zamknąć")
 
@@ -220,6 +222,7 @@ def main():
                 health = funcHealth
             else:
                 funcHealth = thirdStage(health)
+                health = funcHealth
 
     winScreen()
 
